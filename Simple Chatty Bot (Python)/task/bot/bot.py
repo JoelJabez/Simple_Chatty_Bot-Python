@@ -8,6 +8,8 @@ def main():
     age = guess_age()
     print(f"Your age is {age}; that's a good age to start programming")
 
+    print_range()
+
 
 def get_name(text):
     print(text)
@@ -26,6 +28,15 @@ def guess_age():
     actual_age = sum % 105
 
     return actual_age
+
+
+def print_range():
+    print("Now I will prove to you that I can count to any number you want.")
+    number = int(input())
+
+    for i in range(number + 1):
+        print(f"{i} !")
+    print("Completed, have a nice day!")
 
 
 main()

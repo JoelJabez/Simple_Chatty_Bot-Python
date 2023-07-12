@@ -4,19 +4,30 @@ from hstest.test_case import TestCase
 CheckResult.correct = lambda: CheckResult(True, '')
 CheckResult.wrong = lambda feedback: CheckResult(False, feedback)
 
+
 class ChattyBotTest(StageTest):
     def generate(self) -> List[TestCase]:
         return [
-            TestCase(stdin="John\n1\n2\n1", attach=("John", 22)),
-            TestCase(stdin="Nick\n2\n0\n0", attach=("Nick", 35))
+            TestCase(stdin="Marry\n1\n0\n5\n10", attach=("Marry", 40, 10))
         ]
 
     def check(self, reply: str, clue: Any) -> CheckResult:
         lines = reply.strip().splitlines()
-        if len(lines) != 7:
+        length = 9 + clue[2] + 1
+        if len(lines) - length == -1 and lines[8].strip().replace(' ', '') != '0!':
             return CheckResult.wrong(
-                "You should output 7 lines!\n" +
-                f"Lines found: {len(lines)}"
+                f"You should output {length} lines " +
+                f"(for the count number {clue[2]}).\n"
+                f"Make sure that the the bot starts counting from 0.\n" +
+                f"Lines found: {len(lines)}\n"
+                f"Your output:\n"
+                f"{reply.strip()}"
+            )
+        elif len(lines) != length:
+            return CheckResult.wrong(
+                f"You should output {length} lines " +
+                f"(for the count number {clue[2]}).\n" +
+                f"Lines found: {len(lines)}\n"
                 f"Your output:\n"
                 f"{reply.strip()}"
             )
@@ -42,6 +53,18 @@ class ChattyBotTest(StageTest):
                 "Maybe you calculated the age wrong?\n\n" +
                 "Your last line: \n" + "\"" + lines[6] + "\""
             )
+
+        for i in range(clue[2] + 1):
+            num_line = lines[i + 8].strip().replace(' ', '')
+            actual_num = f'{i}!'
+
+            if num_line != actual_num:
+                return CheckResult.wrong(
+                    f"Expected {i + 8}-th line: \n" +
+                    f"\"{actual_num}\"\n" +
+                    f"Your {i + 8}-th line: \n" +
+                    f"\"{num_line}\""
+                )
 
         return CheckResult.correct()
 
