@@ -36,7 +36,6 @@ def print_range():
 
     for i in range(number + 1):
         print(f"{i} !")
-    print("Completed, have a nice day!")
 
 
 main()
