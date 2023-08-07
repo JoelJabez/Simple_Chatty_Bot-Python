@@ -1,0 +1,19 @@
+type: choice
+is_multiple_choice: false
+options:
+- text: "&lt;class &#x27;function&#x27;&gt;, because it&#x27;s a function, right?"
+- text: "&lt;class &#x27;builtin_function_or_method&#x27;&gt;, for it&#x27;s a built-in\
+    \ function"
+- text: "&lt;class &#x27;NoneType&#x27;&gt;, because this function returns nothing"
+- text: I predict SyntaxError
+files:
+- name: main.py
+  visible: true
+  text: |+
+    #  You can experiment here, it won’t be checked
+
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/5897#comment
+status: Solved
+record: -1
+local_check: false

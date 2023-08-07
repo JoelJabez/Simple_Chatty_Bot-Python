@@ -1,0 +1,16 @@
+type: code
+files:
+- name: main.py
+  visible: true
+  text: |-
+    x = int(input())
+    y = int(input())
+    # the variables `x` and `y` are defined, so just print their sum
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/7175#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Sat, 15 Jul 2023 15:07:49 UTC"
+record: -1
+submission_language: python3
